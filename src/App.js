@@ -57,7 +57,6 @@ class App extends Component {
       markers.push(marker);
     });
 
-    /* Keep state in sync */
     this.setState({ map: map });
   }
 
