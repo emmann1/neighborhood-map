@@ -1,0 +1,32 @@
+[
+    {
+      "key": "botanic-park",
+      "title": "Timisoara Botanic Park",
+      "position": { "lat": 45.7526836, "lng": 21.2272792 }
+    },
+    {
+      "key": "bruck-house",
+      "title": "Brück House",
+      "position": { "lat": 45.7574831, "lng": 21.2266177 }
+    },
+    {
+      "key": "orthodox-cathedral",
+      "title": "The Orthodox Mitropolitan Cathedral",
+      "position": { "lat": 45.7503199, "lng": 21.2240682 }
+    },
+    {
+      "key": "catholic-cathedral",
+      "title": "Saint George Catholic Cathedral",
+      "position": { "lat": 45.7560609, "lng": 21.2304594 }
+    },
+    {
+      "key": "maria-theresa-bastion",
+      "title": "Maria Theresa Bastion",
+      "position": { "lat": 45.7569408, "lng": 21.2314651 }
+    },
+    {
+      "key": "rose-park",
+      "title": "Rose Park",
+      "position": { "lat": 45.7535684, "lng": 21.230409 }
+    }
+]
