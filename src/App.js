@@ -10,7 +10,9 @@ class App extends Component {
     locations: markedLocations,
     map: '',
     markers: [],
-    currentMarker: ''
+    selectedMarker: '',
+    thirdPartyInfo: '',
+    markerClicked: false
   }
 
   //Load the map API and setting the global initMap as this components initMap
@@ -23,7 +25,10 @@ class App extends Component {
 
         document.body.appendChild(script);
 
-    
+        script.onerror = function() {
+          alert("Google Maps failed to load!");
+        }
+
   }
 
   //initialize the map and markers
