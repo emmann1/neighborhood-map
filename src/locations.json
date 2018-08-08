@@ -6,27 +6,30 @@
     },
     {
       "key": "bruck-house",
-      "title": "Brück House",
+      "title": "Bruck House",
       "position": { "lat": 45.757494, "lng": 21.228806 }
     },
     {
       "key": "orthodox-cathedral",
       "title": "The Orthodox Mitropolitan Cathedral",
+      "name": "The Orthodox Mitropolitan Cathedral",
       "position": { "lat": 45.750724, "lng": 21.224268 }
     },
     {
       "key": "catholic-cathedral",
       "title": "Saint George Catholic Cathedral",
+      "name": "Timisoara Catholic Cathedral",
       "position": { "lat": 45.758150, "lng": 21.230048 }
     },
     {
       "key": "maria-theresa-bastion",
-      "title": "Maria Theresa Bastion",
+      "title": "Timisoara Bastion",
       "position": { "lat": 45.757387, "lng": 21.233958 }
     },
     {
       "key": "rose-park",
       "title": "Rose Park",
+      "name": "Timisoara Roses Park",
       "position": { "lat": 45.750342, "lng": 21.232475 }
     }
 ]

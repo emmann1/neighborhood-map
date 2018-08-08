@@ -46,14 +46,9 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.filter input[type=text] {
-  min-width: 200px;
+.filter input {
   width: calc(100% - 10px);
   margin: 5px;
-}
-
-.filter input[type=button] {
-  background: #aaa;
 }
 
 .locations-list {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import fetchJsonP from 'fetch-jsonp';
 import Home from  './Components/home';
 import InfoWindow from  './Components/infoWindow';
 import * as markedLocations from './locations.json';
@@ -11,12 +12,13 @@ class App extends Component {
     map: '',
     markers: [],
     selectedMarker: '',
-    thirdPartyInfo: '',
+    wikiInfo: [],
     markerClicked: false
   }
 
   //Load the map API and setting the global initMap as this components initMap
   componentDidMount() {
+    this.fetchWiki();
     window.initMap = this.initMap;
     const script = document.createElement("script");
 
@@ -28,6 +30,8 @@ class App extends Component {
         script.onerror = function() {
           alert("Google Maps failed to load!");
         }
+
+        
 
   }
 
@@ -58,6 +62,19 @@ class App extends Component {
     });
 
     this.setState({ map: map });
+  }
+
+  fetchWiki = () => {
+    console.log(this.state.locations);
+    for(let el of this.state.locations) {
+      let url = 'https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&rvsection=0&titles=' + el.title;
+      url = url.replace(/ /g, '%20');
+      fetchJsonP(url)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+      })
+    }
   }
 
   render() {
