@@ -6,6 +6,16 @@ class Home extends Component {
         return (
         <div className="container">
             <div id="map"></div>
+            <div className="filter">
+                <input type="text" placeholder="Search for a place..." />
+                <ul className="locations-list">
+                        {
+                            this.props.locations.map(element => (
+                                <li className="list-item" key={ element.key }> { element.title } </li>
+                            ))
+                        }
+                </ul>
+            </div>
         </div>
         )
     }
