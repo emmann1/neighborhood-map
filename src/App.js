@@ -15,11 +15,24 @@ class App extends Component {
   //Load the map API and setting the global initMap as this components initMap
   componentDidMount() {
     window.initMap = this.initMap;
-    Load('https://maps.googleapis.com/maps/api/js?key=AIzaSyBV0VFuM6WqVpdMx071AkSNbViOjeerMYI&callback=initMap');
+    const script = document.createElement("script");
+
+        script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBV0VFuM6WqVpdMx071AkSNbViOjeerMYI&callback=initMap";
+        script.async = true;
+
+        document.body.appendChild(script);
+
+    
   }
 
-  initMap() {
+  initMap= () => {
+    let map = new window.google.maps.Map(document.getElementById('map'), {
+      zoom: 15,
+      center: { lat: 45.756605, lng: 21.229135 }
+    });
 
+    /* Keep state in sync */
+    this.setState({ map: map });
   }
 
   render() {
