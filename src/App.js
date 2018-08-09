@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import fetchJsonP from 'fetch-jsonp';
-import Home from  './Components/home';
+import Filter from './Components/filter';
 import InfoWindow from  './Components/infoWindow';
 import * as markedLocations from './locations.json';
 
@@ -11,30 +10,50 @@ class App extends Component {
     locations: markedLocations,
     map: '',
     markers: [],
-    selectedMarker: '',
+    currentLocation: [],
     wikiInfo: [],
-    markerClicked: false
+    markerClicked: false,
+    pictures: []
   }
 
   //Load the map API and setting the global initMap as this components initMap
   componentDidMount() {
-    this.fetchWiki();
+    
     window.initMap = this.initMap;
     const script = document.createElement("script");
-
-        script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBV0VFuM6WqVpdMx071AkSNbViOjeerMYI&callback=initMap";
-        script.async = true;
-
-        document.body.appendChild(script);
-
-        script.onerror = function() {
-          alert("Google Maps failed to load!");
-        }
-
-        
-
+    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBV0VFuM6WqVpdMx071AkSNbViOjeerMYI&callback=initMap";
+    script.async = true;
+    document.body.appendChild(script);
+    script.onerror = function() {
+      alert("Google Maps failed to load!");
+    }
+    this.setState({currentLocation: this.state.locations[0]})
+    
   }
 
+  Clicked = (current) => {
+    this.setState({markerClicked: true});
+    this.setState({currentLocation: current});
+    this.Flickr(current.name);
+  }
+
+  Flickr = (name) => {
+    const query = name.replace(/ /g,",");
+    fetch('https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=38d745abed51adbd2be727af25d79bbf&tags='+ query +'&per_page=5&page=1&format=json&nojsoncallback=1')
+    .then(function(response){
+      return response.json();
+    })
+    .then(j => {
+      let picArray = j.photos.photo.map((pic, index) => {
+        
+        var srcPath = 'https://farm'+pic.farm+'.staticflickr.com/'+pic.server+'/'+pic.id+'_'+pic.secret+'.jpg';
+        return(
+          <img key={index} alt="dogs" src={srcPath} />
+        )
+      })
+      this.setState({pictures: picArray});
+    })
+  }
   //initialize the map and markers
   initMap= () => {
     let locations = this.state.locations;
@@ -64,23 +83,16 @@ class App extends Component {
     this.setState({ map: map });
   }
 
-  fetchWiki = () => {
-    console.log(this.state.locations);
-    for(let el of this.state.locations) {
-      let url = 'https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&rvsection=0&titles=' + el.title;
-      url = url.replace(/ /g, '%20');
-      fetchJsonP(url)
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-      })
-    }
-  }
-
   render() {
     return (
-      <Home locations={ this.state.locations }/>
-    );
+      <div className="container">
+        <div id="map"></div>
+        <div className="pictures">
+        {this.state.pictures}
+        </div>
+          <Filter clicked={this.Clicked} locations={this.state.locations}/>
+        </div>
+    )
   }
 }
 

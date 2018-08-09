@@ -23,14 +23,14 @@ class Filter extends Component {
     render() {
         return(
             <div className="filter">
-                <input tabindex="1" value={ this.state.searchQuery } 
+                <input tabIndex="1" value={ this.state.searchQuery } 
                 onChange={event => this.setQuery(event.target.value)}
                 id="search-input" type="text" placeholder="Search for a place..." />
                 <ul className="locations-list">
                     {
                         this.state.filteredLocations.map((element, index) => (
-                        <li role="button" aria-role-description="Button for displaying more info about the location" 
-                        tabindex={index+2} className="list-item" key={ element.key }>{ element.title }</li>))
+                        <li role="button" onClick={(e) => this.props.clicked(element)} 
+                        tabIndex={index+2} className="list-item" key={ element.key }>{ element.title }</li>))
                     }
                 </ul>
             </div>

@@ -2,11 +2,13 @@
     {
       "key": "botanic-park",
       "title": "Timisoara Botanic Park",
+      "name": "Timisoara Botanic Park",
       "position": { "lat": 45.760181, "lng": 21.225295 }
     },
     {
       "key": "bruck-house",
       "title": "Bruck House",
+      "name": "Bruck House",
       "position": { "lat": 45.757494, "lng": 21.228806 }
     },
     {
@@ -16,7 +18,7 @@
       "position": { "lat": 45.750724, "lng": 21.224268 }
     },
     {
-      "key": "catholic-cathedral",
+      "key": "timisoara-catholic-cathedral",
       "title": "Saint George Catholic Cathedral",
       "name": "Timisoara Catholic Cathedral",
       "position": { "lat": 45.758150, "lng": 21.230048 }
@@ -24,6 +26,7 @@
     {
       "key": "maria-theresa-bastion",
       "title": "Timisoara Bastion",
+      "name": "Timisoara Bastion",
       "position": { "lat": 45.757387, "lng": 21.233958 }
     },
     {
