@@ -69,7 +69,18 @@ padding: 5px;
 }
 
 .pictures {
-  position: fixed;
+  top: 50%;
+  width: calc(25% + 11px);
+  height: 50%;
+  position: absolute;
+  text-align: center;
+  overflow: scroll;
+}
+
+.images {
+  max-width: 25vw;
+  max-height: 15vw;
+  padding: 5px;
 }
 
 @keyframes App-logo-spin {

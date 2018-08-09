@@ -38,8 +38,8 @@ class App extends Component {
   }
 
   Flickr = (name) => {
-    const query = name.replace(/ /g,",");
-    fetch('https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=38d745abed51adbd2be727af25d79bbf&tags='+ query +'&per_page=5&page=1&format=json&nojsoncallback=1')
+    const query = name;
+    fetch('https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=38d745abed51adbd2be727af25d79bbf&text='+ query +'&per_page=10&page=1&format=json&nojsoncallback=1')
     .then(function(response){
       return response.json();
     })
@@ -48,7 +48,7 @@ class App extends Component {
         
         var srcPath = 'https://farm'+pic.farm+'.staticflickr.com/'+pic.server+'/'+pic.id+'_'+pic.secret+'.jpg';
         return(
-          <img key={index} alt="dogs" src={srcPath} />
+          <img className="images" key={index} alt="dogs" src={srcPath} />
         )
       })
       this.setState({pictures: picArray});

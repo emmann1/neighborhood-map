@@ -2,13 +2,13 @@
     {
       "key": "botanic-park",
       "title": "Timisoara Botanic Park",
-      "name": "Timisoara Botanic Park",
+      "name": "Botanic Park Timisoara",
       "position": { "lat": 45.760181, "lng": 21.225295 }
     },
     {
       "key": "bruck-house",
       "title": "Bruck House",
-      "name": "Bruck House",
+      "name": "Timisoara Bruck House",
       "position": { "lat": 45.757494, "lng": 21.228806 }
     },
     {
@@ -25,14 +25,14 @@
     },
     {
       "key": "maria-theresa-bastion",
-      "title": "Timisoara Bastion",
+      "title": "Maria Theresia Bastion",
       "name": "Timisoara Bastion",
       "position": { "lat": 45.757387, "lng": 21.233958 }
     },
     {
       "key": "rose-park",
-      "title": "Rose Park",
-      "name": "Timisoara Roses Park",
+      "title": "Roses Park",
+      "name": "Roses Park Timisoara",
       "position": { "lat": 45.750342, "lng": 21.232475 }
     }
 ]
