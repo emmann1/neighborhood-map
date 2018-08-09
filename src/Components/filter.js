@@ -8,7 +8,7 @@ class Filter extends Component {
     }
 
     setQuery = (string) => {
-        this.setState({searchQuery : string}, this.Search);
+        this.setState({searchQuery : string.toLowerCase()}, this.Search);
     }
 
     Search = () => {
