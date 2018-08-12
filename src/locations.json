@@ -6,10 +6,10 @@
       "position": { "lat": 45.760181, "lng": 21.225295 }
     },
     {
-      "key": "bruck-house",
-      "title": "Bruck House",
-      "name": "Timisoara Bruck House",
-      "position": { "lat": 45.757494, "lng": 21.228806 }
+      "key": "art-museum",
+      "title": "Art Museum",
+      "name": "Art Museum of Timisoara",
+      "position": { "lat": 45.757409, "lng": 21.229290 }
     },
     {
       "key": "orthodox-cathedral",
@@ -21,13 +21,13 @@
       "key": "timisoara-catholic-cathedral",
       "title": "Saint George Catholic Cathedral",
       "name": "Timisoara Catholic Cathedral",
-      "position": { "lat": 45.758150, "lng": 21.230048 }
+      "position": { "lat": 45.758158, "lng": 21.230095 }
     },
     {
       "key": "maria-theresa-bastion",
       "title": "Maria Theresia Bastion",
       "name": "Timisoara Bastion",
-      "position": { "lat": 45.757387, "lng": 21.233958 }
+      "position": { "lat": 45.756713, "lng": 21.233678 }
     },
     {
       "key": "rose-park",
