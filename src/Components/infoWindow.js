@@ -3,6 +3,7 @@ import '../App.css';
 
 class InfoWindow extends Component {
 
+    //Listen when a click was made outside the main image and trigger the state to change
     offClick = (e) => {
         let element = document.querySelector('.big-image img');
         if(!element.contains(e.target)){

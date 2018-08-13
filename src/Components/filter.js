@@ -8,20 +8,23 @@ class Filter extends Component {
         filterHidden: false
     }
 
+    //Set the query that is being used for searching ht locations
     setQuery = (string) => {
         this.setState({searchQuery : string.toLowerCase()}, this.Search);
     }
 
+    // Search locations with a query and return a filtered array of those locations that are being then sent back to main app
+    // to filter the markers further
     Search = () => {
         if(this.state.searchQuery != '') {
             let filteredLocations = this.props.locations.filter(el => el.title.toLowerCase().includes(this.state.searchQuery))
             this.setState({filteredLocations: filteredLocations})
+            this.props.filterMarkers(filteredLocations);
         }else{
             this.setState({filteredLocations: this.props.locations})
+            this.props.filterMarkers(null);
         }
     }
-
-    
 
     render() {
         return(

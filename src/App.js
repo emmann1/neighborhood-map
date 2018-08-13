@@ -11,8 +11,6 @@ class App extends Component {
     locations: markedLocations,
     map: '',
     markers: [],
-    currentLocation: [],
-    markerClicked: false,
     pictures: [],
     filterHidden: false,
     imageClicked: false,
@@ -23,7 +21,6 @@ class App extends Component {
   //Load the map API and setting the global initMap as this components initMap
   componentDidMount() {
     this.setState({height: window.innerHeight});
-    
     window.initMap = this.initMap;
     const script = document.createElement("script");
     script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBV0VFuM6WqVpdMx071AkSNbViOjeerMYI&callback=initMap";
@@ -32,15 +29,20 @@ class App extends Component {
     script.onerror = function() {
       alert("Google Maps failed to load!");
     }
-    this.setState({currentLocation: this.state.locations[0]})
   }
 
+  //Function to control what is clicked on the left panel list
   Clicked = (current) => {
-    this.setState({markerClicked: true});
-    this.setState({currentLocation: current});
-    this.Flickr(current.name);
+    let controlThis = this;
+    this.state.markers.map(marker => {
+      if(marker.id == current.key) {
+        controlThis.addInfoWindow(marker, this.state.infowindow);
+        controlThis.Flickr(current.name);
+      }
+    })
   }
 
+  //Flickr api to get images from a selected query name
   Flickr = (name) => {
     const query = name;
     let mobile = this.state.height > 700 ? '_c' : '';
@@ -59,7 +61,7 @@ class App extends Component {
       this.setState({pictures: picArray});
     })
   }
-  //initialize the map and markers
+  //Initialize the map and markers
   initMap= () => {
     let locations = this.state.locations;
     let markers = this.state.markers;
@@ -69,6 +71,7 @@ class App extends Component {
     });
 
     var infoWindow = new window.google.maps.InfoWindow();
+    this.setState({infowindow: infoWindow});
 
     //Loops through every location to set a marker for it
     locations.forEach( element => {
@@ -90,18 +93,40 @@ class App extends Component {
 
       marker.addListener('click', function() {
         currentThis.addInfoWindow(this, infoWindow, element);
+        currentThis.Flickr(element.name);
       });
     });
 
     this.setState({ map: map });
   }
 
-  addInfoWindow = (marker, infowindow, location) => {
+  //When the search input changes the markers display accordingly
+  filterMarkers = (filteredArray) => {
+    if(filteredArray != null){
+      this.state.markers.map(marker => {
+        marker.setMap(null);
+        filteredArray.map(element => {
+          if(element.key == marker.id) {
+            marker.setMap(this.state.map);
+          }
+        })
+      })
+    }else{
+      this.state.markers.map(marker => {
+        marker.setMap(this.state.map)
+      })
+    }
+  }
+
+  //Add a infoWindow to display name and Streetview details and a clicked animation
+  addInfoWindow = (marker, infowindow) => {
     infowindow.setContent('');
     infowindow.marker = marker;
     infowindow.addListener('closeclick', function() {
       infowindow.marker = null;
     });
+    marker.setAnimation(window.google.maps.Animation.BOUNCE);
+    marker.setAnimation(null);
 
     var streetViewService = new window.google.maps.StreetViewService();
           var radius = 50;
@@ -128,19 +153,19 @@ class App extends Component {
           // Use streetview service to get the closest streetview image within
           // 50 meters of the markers position
         streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
-    this.Clicked(location);
+    
     infowindow.setContent('<div>' + marker.title + '</div>')
     
     infowindow.open(this.state.map, marker);
   }
 
+  //When an image is clicked it is displayed fullscreen
   imageClicked = (src) => {
     this.setState({imageClicked: true});
-    console.log(src);
     this.setState({clickedImg: src});
-    console.log(this.state.height);
   }
 
+  //Button to hide the left panel functinality
   HideFilter = () => {
     let filter = document.querySelector('.filter-container');
     if(this.state.filterHidden){
@@ -152,10 +177,12 @@ class App extends Component {
     }
   }
 
+  //Trigger when there is a click outside the fullscreen image displayed
   offClick = () => {
   this.setState({imageClicked: false})
   }
 
+  //Main render function
   render() {
     return (
     <div>
@@ -165,6 +192,7 @@ class App extends Component {
           <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
         </Helmet>
       <div className="container">
+      {/* When an image was clicked trigger it to display fullscreen */}
       {this.state.imageClicked ? 
       <InfoWindow offClick={this.offClick} src={this.state.clickedImg} />
       :
@@ -172,7 +200,7 @@ class App extends Component {
       }
         <div id="map"></div>
           <input className="hide-button" onClick={this.HideFilter} type="button" value={this.state.filterHidden? 'Show Panel' : 'Hide Panel'} />
-          <Filter pictures={this.state.pictures} clicked={this.Clicked} locations={this.state.locations}/>
+          <Filter pictures={this.state.pictures} clicked={this.Clicked} filterMarkers={this.filterMarkers} locations={this.state.locations}/>
       </div>
     </div>
     )
