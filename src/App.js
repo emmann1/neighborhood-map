@@ -35,7 +35,7 @@ class App extends Component {
   Clicked = (current) => {
     let controlThis = this;
     this.state.markers.map(marker => {
-      if(marker.id == current.key) {
+      if(marker.id === current.key) {
         controlThis.addInfoWindow(marker, this.state.infowindow);
         controlThis.Flickr(current.name);
       }
@@ -55,7 +55,7 @@ class App extends Component {
         
         var srcPath = 'https://farm'+pic.farm+'.staticflickr.com/'+pic.server+'/'+pic.id+'_'+pic.secret+ mobile + '.jpg';
         return(
-          <img tabindex={index+9} onClick={(e) => this.imageClicked(srcPath)} className="images" key={index} alt={"Image of " + name} src={srcPath} />
+          <img tabIndex={index+9} onClick={(e) => this.imageClicked(srcPath)} className="images" key={index} alt={"Image of " + name} src={srcPath} />
         )
       })
       this.setState({pictures: picArray});
@@ -106,7 +106,7 @@ class App extends Component {
       this.state.markers.map(marker => {
         marker.setMap(null);
         filteredArray.map(element => {
-          if(element.key == marker.id) {
+          if(element.key === marker.id) {
             marker.setMap(this.state.map);
           }
         })
@@ -131,7 +131,7 @@ class App extends Component {
     var streetViewService = new window.google.maps.StreetViewService();
           var radius = 50;
           function getStreetView(data, status) {
-            if (status == window.google.maps.StreetViewStatus.OK) {
+            if (status === window.google.maps.StreetViewStatus.OK) {
               var nearStreetViewLocation = data.location.latLng;
               var heading = window.google.maps.geometry.spherical.computeHeading(
                 nearStreetViewLocation, marker.position);
