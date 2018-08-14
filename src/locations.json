@@ -34,5 +34,11 @@
       "title": "Roses Park",
       "name": "Roses Park Timisoara",
       "position": { "lat": 45.750342, "lng": 21.232475 }
+    },
+    {
+      "key": "opera-house",
+      "title": "Timisora Opera House",
+      "name": "Timisoara Opera House",
+      "position": {"lat": 45.754106, "lng": 21.225852}
     }
 ]
