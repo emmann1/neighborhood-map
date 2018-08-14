@@ -55,7 +55,7 @@ class App extends Component {
         
         var srcPath = 'https://farm'+pic.farm+'.staticflickr.com/'+pic.server+'/'+pic.id+'_'+pic.secret+ mobile + '.jpg';
         return(
-          <img onClick={(e) => this.imageClicked(srcPath)} className="images" key={index} alt="dogs" src={srcPath} />
+          <img tabindex={index+9} onClick={(e) => this.imageClicked(srcPath)} className="images" key={index} alt={"Image of " + name} src={srcPath} />
         )
       })
       this.setState({pictures: picArray});
@@ -198,8 +198,8 @@ class App extends Component {
       :
       <div></div>
       }
-        <div id="map"></div>
-          <input className="hide-button" onClick={this.HideFilter} type="button" value={this.state.filterHidden? 'Show Panel' : 'Hide Panel'} />
+        <div id="map" role="application"></div>
+          <input tabIndex="1" className="hide-button" onClick={this.HideFilter} type="button" value={this.state.filterHidden? 'Show Panel' : 'Hide Panel'} />
           <Filter pictures={this.state.pictures} clicked={this.Clicked} filterMarkers={this.filterMarkers} locations={this.state.locations}/>
       </div>
     </div>

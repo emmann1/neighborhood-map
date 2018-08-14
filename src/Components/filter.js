@@ -31,14 +31,14 @@ class Filter extends Component {
             <div className="filter-container">
                 <div className="filter">
                     
-                    <input tabIndex="1" value={ this.state.searchQuery } 
+                    <input tabIndex="2" value={ this.state.searchQuery } 
                     onChange={event => this.setQuery(event.target.value)}
                     id="search-input" type="text" placeholder="Search for a place..." />
                     <ul className="locations-list">
                         {
                             this.state.filteredLocations.map((element, index) => (
                             <li role="button" onClick={(e) => this.props.clicked(element)} 
-                            tabIndex={index+2} className="list-item" key={ element.key }>{ element.title }</li>))
+                            tabIndex={index+3} className="list-item" key={ element.key }>{ element.title }</li>))
                         }
                     </ul>
                 </div>
